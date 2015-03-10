@@ -1,41 +1,33 @@
-var data = [];
-var maxSize;
-
 var circularBuffer = function (size) {
 	/* A circular buffer */
-	maxSize = size;
-	clear();
+	var buffer = [];
+	
 	return {
-		read: read,
-		write: write,
-		clear: clear,
-		forceWrite: forceWrite,
+		read: function() {
+			/* Reads data from the buffer */
+			if(buffer.length <= 0)
+				throw new bufferEmptyException();
+			return buffer.shift();
+		},
+		
+		write: function(data) {
+			/* Writes data to the buffer */
+			if(buffer.length >= size)
+				throw new bufferFullException();
+			if(data)
+				buffer.push(data);
+		},
+		
+		/* Clears the buffer */
+		clear: function() { buffer = [] },
+		
+		forceWrite: function(data) {
+			/* Writes data to the buffer even if it will overwrite data */
+			if(buffer.length >= size)
+				buffer.shift();
+			buffer.push(data);
+		},
 	};
-};
-
-var read = function() {
-	/* Reads data from the buffer */
-	if(data.length <= 0)
-		throw new bufferEmptyException();
-	return data.shift();
-};
-
-var write = function(item) {
-	/* Writes data to the buffer */
-	if(data.length >= maxSize)
-		throw new bufferFullException();
-	if(item)
-		data.push(item);
-};
-
-/* Clears the buffer */
-var clear = function() { data = [] };
-
-var forceWrite = function(item) {
-	/* Writes data to the buffer even if it will overwrite data */
-	if(data.length >= maxSize)
-		read();
-	write(item);
 };
 
 var bufferEmptyException = function() {
