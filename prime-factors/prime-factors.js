@@ -1,17 +1,18 @@
-function primeFactors(remainer) {
+function primeFactors(remainder) {
 	/* Finds all prime factors of a number */
 	// Finds factors smallest to largest adding to the list of factors
 	var factor = 2;
 	var factors = [];
-	while(Math.pow(factor, 2) <= remainer) {
-		while(remainer % factor == 0) {
+	while(Math.pow(factor, 2) <= remainder) {
+		while(remainder % factor == 0) {
 			factors.push(factor);
-			remainer /= factor;
+			remainder /= factor;
 		}
-		factor += 1;
+		// factor += 1;
+		factor += factor == 2 ? 1 : 2;
 	}
-	if(remainer != 1)
-		factors.push(remainer);
+	if(remainder != 1)
+		factors.push(remainder);
 	return factors;
 }
 
