@@ -1,8 +1,10 @@
-function countWords( wordString ) {
+var Words = function() {}
+
+Words.prototype.count = function( wordString ) {
 	/* Counts the number of times each words appears */
 	var wordCount = {};
 	// Splits words on whitespace
-	wordString.split(/\s+/).forEach( function(word) {
+	wordString.trim().split(/\s+/).forEach( function(word) {
 		if(word in wordCount && !isNaN(wordCount[word]))
 			wordCount[word]++;
 		else
@@ -12,4 +14,4 @@ function countWords( wordString ) {
 	return wordCount;
 };
 
-module.exports = countWords;
+module.exports = Words;
