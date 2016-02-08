@@ -1,9 +1,7 @@
-module.exports = {
-	verse: verse,
-	sing: sing,
-};
+var BeerSong = function() {}
 
-function verse( verseNum ) {
+
+BeerSong.prototype.verse = function( verseNum ) {
 	/* Sings a verse of "bottles of beer on the wall" */
 	// Special cases for verses that include 0 (no more) and 1 (bottle[s])
 	var specialLines = {
@@ -17,13 +15,16 @@ function verse( verseNum ) {
 	return verseNum in specialLines ? specialLines[verseNum] : sprintf(normalLine, verseNum, verseNum, verseNum - 1);
 };
 
-function sing( start, stop) {
+BeerSong.prototype.sing = function( start, stop) {
 	/* Sings a set of verses of "Bottle of beer on the wall" */
 	// Default
 	stop || (stop = 0);
 	var song = [];
 	for(var verseNum = start; verseNum >= stop; verseNum--) {
-		song.push(verse(verseNum));
+		song.push(this.verse(verseNum));
 	}
 	return song.join("\n");
 };
+
+
+module.exports = BeerSong;
