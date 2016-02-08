@@ -3,7 +3,7 @@ Pangram = function(text) {
 }
 
 Pangram.prototype.isPangram = function() {
-    letters = this.text.toLowerCase();
+    var letters = this.text.toLowerCase();
     return "abcdefghijklmnopqrstuvwxyz".split('').every(function(letter){
         return letters.includes(letter)
     });
