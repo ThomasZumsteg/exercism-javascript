@@ -14,7 +14,7 @@ Queens.prototype.toString = function() {
 				return "W";
 			if(this.black[0] == i && this.black[1] == j)
 				return "B";
-			return "O";
+			return "_";
 		}, this).join(" ") + "\n";
 	}, this).join("");
 };
