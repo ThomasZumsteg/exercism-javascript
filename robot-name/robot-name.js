@@ -4,13 +4,10 @@ Robot.prototype.reset = function() {
 	/* Give the robot a new name */
 	var oldName = this.name;
 	this.name = getName();
-	freeName(oldName);
 };
 
 // Keeps track of robot names in use
 var namesInUse = new Set();
-// Allows the name to be used when not in use
-function freeName(name) { namesInUse.delete(name) }
 
 function getName() {
 	/* Generates a robot name */
