@@ -14,7 +14,7 @@ Triangle.prototype.kind = function() {
 		throw "Only positive length sides are allowed";
 	if (a * b * c == 0)
 		throw "Triangle cannot have zero area";
-	if (a + b <= c)
+	if (a + b < c)
 		throw "Not a valid triangle";
 
 	// Classification
