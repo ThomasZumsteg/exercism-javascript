@@ -1,9 +1,10 @@
+var BigInt = require('./big-integer.js');
+
 module.exports = function () {
 	/* Counts the number of grains of rice on squares of a chess board */
 	return {
 		// Grains start at 1 and double every square
-		// ONLY RETURNS ESTIMATES, javascript doesn't natively support large numbers
-		square: function (n) { return Math.pow(2, n - 1) },
-		total: function() { return Math.pow(2, 64) - 1 },
+		square: function (n) { return BigInt(2).pow(n - 1).toString() },
+		total: function() { return BigInt(2).pow(64).prev().toString() },
 	}
 }
