@@ -1,4 +1,6 @@
-module.exports = function(oldSturct) {
+var ETL = function() {}
+
+ETL.prototype.transform = function(oldSturct) {
 	/* Converts an old data structure to a new format */
 	var newStruct = {};
 	// Iterates over keys
@@ -11,3 +13,5 @@ module.exports = function(oldSturct) {
 	});
 	return newStruct;
 }
+
+module.exports = ETL
