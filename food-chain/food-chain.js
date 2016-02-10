@@ -1,9 +1,6 @@
-module.exports = {
-	verse : verse,
-	verses : verses,
-};
+var FoodChain = function() {};
 
-function verse( verseNum ) {
+FoodChain.prototype.verse = function( verseNum ) {
 	/* Sing a verse of a song */
 	var verse = lines.opening + lines.first[verseNum]
 	// She's dead of course
@@ -11,11 +8,11 @@ function verse( verseNum ) {
 	return verse + lines.chorus.slice(0, verseNum).reverse().join('');
 };
 
-function verses(stop, start) {
+FoodChain.prototype.verses = function(stop, start) {
 	/* Sings a set of verses of a song */
 	var verses = '';
 	for(var i = stop; i <= start; i++) {
-		verses += verse(i) + "\n";
+		verses += this.verse(i) + "\n";
 	} 
 	return verses;
 };
@@ -42,3 +39,5 @@ var lines = {
 			  "She swallowed the cow to catch the goat.\n",
 			 ],
 };
+
+module.exports = FoodChain; 
