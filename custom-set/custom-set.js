@@ -48,8 +48,8 @@ CustomSet.prototype.difference = function(set_b) {
 
 CustomSet.prototype.disjoint = function(set_b) {
 	/* Tests if there are no elements in common */
-	if(this.size() == 0)
-		return false;
+	if(this.size() == 0 || set_b.size() == 0)
+		return true;
 	return this.toList().every(function(element) {
 		return !set_b.member(element);
 	});
