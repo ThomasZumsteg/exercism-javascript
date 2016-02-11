@@ -1,19 +1,19 @@
-function bracket(brackets) {
-	/* Checks that bracket syntax is correct */
-	var pairs = {"{}": 0, "[]": 0, "()": 0};
-	var pairs_match = brackets.split('').every(match_braces, pairs);
-	return pairs_match && 
-		Object.keys(pairs).every(function(pair) { return pairs[pair] == 0 });
-};
+var bracket_pairs = {"{": "}", "[":"]", "(":")"};
 
-function match_braces(element) {
-	Object.keys(this).forEach( function(pair) {
-		if(pair[0] == element)
-			this[pair]++;
-		else if(pair[1] == element)
-			this[pair]--;
-	}, this);
-	return Object.keys(this).every(function(pair) { return 0 <= this[pair]}, this);
+function bracket(brackets) {
+	/* checks that bracket syntax is correct */
+  var stack = [];
+  for( var i = 0; i < brackets.length; i++) {
+    var letter = brackets[i];
+    if( bracket_pairs.hasOwnProperty(letter) ) {
+      stack.push(bracket_pairs[letter]);
+    } else if( stack.length != 0 && stack[stack.length - 1] == letter) {
+      stack.pop();
+    } else {
+      return false;
+    }
+  }
+  return stack.length == 0;
 };
 
 module.exports = bracket;
