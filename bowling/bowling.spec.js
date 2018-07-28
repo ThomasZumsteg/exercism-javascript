@@ -177,7 +177,7 @@ describe('Bowling', function () {
         new Error('Score cannot be taken until the end of the game'));
     });
 
-    xit('cannot roll if game already has 10 frames', function () {
+    it('cannot roll if game already has 10 frames', function () {
       var rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
       var bowling = new Bowling();
       previousRolls(bowling, rolls);
