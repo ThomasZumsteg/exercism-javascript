@@ -185,7 +185,7 @@ describe('Bowling', function () {
         new Error('Cannot roll after game is over'));
     });
 
-    xit('bonus rolls for a strike in the last frame must be rolled before score can be calculated', function () {
+    it('bonus rolls for a strike in the last frame must be rolled before score can be calculated', function () {
       var rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10];
       var bowling = new Bowling();
       previousRolls(bowling, rolls);
@@ -193,7 +193,7 @@ describe('Bowling', function () {
         new Error('Score cannot be taken until the end of the game'));
     });
 
-    xit('both bonus rolls for a strike in the last frame must be rolled before score can be calculated', function () {
+    it('both bonus rolls for a strike in the last frame must be rolled before score can be calculated', function () {
       var rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10];
       var bowling = new Bowling();
       previousRolls(bowling, rolls);
@@ -201,7 +201,7 @@ describe('Bowling', function () {
         new Error('Score cannot be taken until the end of the game'));
     });
 
-    xit('bonus roll for a spare in the last frame must be rolled before score can be calculated', function () {
+    it('bonus roll for a spare in the last frame must be rolled before score can be calculated', function () {
       var rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 3];
       var bowling = new Bowling();
       previousRolls(bowling, rolls);
@@ -209,7 +209,7 @@ describe('Bowling', function () {
         new Error('Score cannot be taken until the end of the game'));
     });
 
-    xit('cannot roll after bonus roll for a spare', function () {
+    it('cannot roll after bonus roll for a spare', function () {
       var rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 3, 2];
       var bowling = new Bowling();
       previousRolls(bowling, rolls);
@@ -217,7 +217,7 @@ describe('Bowling', function () {
         new Error('Cannot roll after game is over'));
     });
 
-    xit('cannot roll after bonus rolls for a strike', function () {
+    it('cannot roll after bonus rolls for a strike', function () {
       var rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 3, 2];
       var bowling = new Bowling();
       previousRolls(bowling, rolls);

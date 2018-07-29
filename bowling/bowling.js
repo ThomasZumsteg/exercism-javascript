@@ -6,17 +6,27 @@ class Bowling {
         this.second = false;
     }
 
-    gameOver() { return this.frame >= 10 && this.extra <= 0; }
-    // wasStrike() { return 1 <= this.frame && this.rolls.slice(-1)[0] == 10 }
-    // wasSpare() {
-    //     return 1 <= this.frame && !this.wasStrike() && }
+    gameOver() { return 10 <= this.frame && this.extra <= 0; }
 
     roll(pins) {
-        if(pins < 0) {
+        if(this.gameOver()) {
+            throw new Error('Cannot roll after game is over');
+        } else if(pins < 0) {
             throw new Error('Negative roll is invalid');
         } else if(10 < pins || (this.second && this.rolls.slice(-1)[0] + pins > 10)) {
             throw new Error('Pin count exceeds pins on the lane');
         }
+
+        if(this.frame == 9) {
+            if(this.second == false && pins == 10) {
+                this.extra = 2;
+            } else if(this.second == true && pins + this.rolls.slice(-1)[0] == 10) {
+                this.extra = 1;
+            }
+        } else if(9 < this.frame) {
+            this.extra--; 
+        }
+
         if(pins == 10) {
             this.frame += 1;
             this.second = false;
