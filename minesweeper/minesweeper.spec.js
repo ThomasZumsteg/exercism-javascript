@@ -56,7 +56,7 @@ describe('Minesweeper()', function () {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xit('handles space surrounded by mines', function () {
+  it('handles space surrounded by mines', function () {
     var minesweeper = new Minesweeper();
     var input = [
       '***',
@@ -71,7 +71,7 @@ describe('Minesweeper()', function () {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xit('handles space surrounded by mines', function () {
+  it('handles space surrounded by mines', function () {
     var minesweeper = new Minesweeper();
     var input = [
       '***',
@@ -86,21 +86,21 @@ describe('Minesweeper()', function () {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xit('handles horizontal line', function () {
+  it('handles horizontal line', function () {
     var minesweeper = new Minesweeper();
     var input = [' * * '];
     var expected = ['1*2*1'];
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xit('handles horizontal line, mines at edges', function () {
+  it('handles horizontal line, mines at edges', function () {
     var minesweeper = new Minesweeper();
     var input = ['*   *'];
     var expected = ['*1 1*'];
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xit('handles vertical line', function () {
+  it('handles vertical line', function () {
     var minesweeper = new Minesweeper();
     var input = [
       ' ',
@@ -119,7 +119,7 @@ describe('Minesweeper()', function () {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xit('handles vertical line, mines at edges', function () {
+  it('handles vertical line, mines at edges', function () {
     var minesweeper = new Minesweeper();
     var input =  [
       '*',
@@ -138,7 +138,7 @@ describe('Minesweeper()', function () {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xit('handles cross', function () {
+  it('handles cross', function () {
     var minesweeper = new Minesweeper();
     var input =   [
       '  *  ',
@@ -157,7 +157,7 @@ describe('Minesweeper()', function () {
     expect(minesweeper.annotate(input)).toEqual(expected);
   });
 
-  xit('handles large board', function () {
+  it('handles large board', function () {
     var minesweeper = new Minesweeper();
     var input =  [
       ' *  * ',

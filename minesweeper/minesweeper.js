@@ -1,7 +1,18 @@
 class Minesweeper {
     static countMines(field, row, col) {
-        const diffs = [[1,1], [1,0], [1,-1], [0,1], [0,-1], [-1,1], [-1,0], [-1,-1]];
-        return 0;
+        const diffs = [
+            [row+1,col+1], [row+1,col], [row+1,col-1],
+            [row  ,col+1],              [row  ,col-1],
+            [row-1,col+1], [row-1,col], [row-1,col-1]];
+        var total = 0;
+        for(var d = 0; d < diffs.length; d++) {
+            if(0 <= diffs[d][0] && diffs[d][0] < field.length &&
+               0 <= diffs[d][1] && diffs[d][1] < field[diffs[d][0]].length &&
+               field[diffs[d][0]][diffs[d][1]] == '*') {
+                total++;
+            }
+        }
+        return total;
     }
 
     annotate(field) {
@@ -11,7 +22,7 @@ class Minesweeper {
             for(var c = 0; c < field[r].length; c++) {
                 if(field[r][c] == ' ') {
                     mines = Minesweeper.countMines(field, r, c);
-                    field[r][c] = '1';
+                    field[r][c] = mines == 0 ? ' ' : mines;
                 }
             }
         }
