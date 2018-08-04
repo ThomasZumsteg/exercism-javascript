@@ -1,9 +1,21 @@
-function* select(n, items) {
-    /* Select all permutations of length n from items */
-    var index = new Array(n).fill(0).map((_, i) => i);
+function* combinations(len, items) {
+    var indexes = new Array(len).fill(0);
+    var i;
     while(true) {
-        yield items;
-        break;
+        if(indexes.length == new Set(indexes).size) {
+            yield indexes;
+        }
+        indexes[0]++;
+        for(var i = 0; i < indexes.length; i++) {
+            if(items.length < indexes[i] + 1) {
+                if(i + 1 < indexes.length) {
+                    indexes[i] = 0;
+                    indexes[i+1]++;
+                } else {
+                    return;
+                }
+            }
+        }
     }
 }
 
@@ -28,22 +40,20 @@ function get_letters(...words) {
 }
 
 function solve(puzzle) {
-    const sides = puzzle.split(' == ');
-    const sum = sides[1];
-    const terms = sides[0].split(' + ');
+    const sum = puzzle.split(' == ')[1];
+    const terms = puzzle.split(' == ')[0].split(' + ');
     const letters = get_letters(sum, ...terms);
     const digits = new Array(10).fill(0).map((_, i) => i);
-    var solution;
-    for(let indexes in select(letters.length, digits)) {
-        var map = make_map(indexes, letters);
-        if(terms.reduce((acc, word) => acc + translate(word, map))
+    var solution = [];
+    var map;
+    for(let combination of combinations(letters.length, digits)) {
+        map = make_map(combination, letters);
+        if(terms.reduce((acc, word) => translate(word, map) + acc, 0) 
             == translate(sum, map)) {
-            if(solution == null) {
-                solution = map;
-            }
+            solution.push(map);
         }
     }
-    return solution;
+    return solution.length == 1 ? solution[0] : null;
 }
 
 module.exports = solve;
