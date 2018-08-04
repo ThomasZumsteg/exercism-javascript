@@ -11,7 +11,7 @@ describe('Solve the alphametics puzzle', function () {
     expect(solve(puzzle)).toEqual(expected);
   });
 
-  it('solution must have unique value for each letter', function () {
+  xit('solution must have unique value for each letter', function () {
     var puzzle = 'A == B';
     expect(solve(puzzle)).toBeNull();
   });
