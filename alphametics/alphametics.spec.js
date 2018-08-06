@@ -21,7 +21,7 @@ describe('Solve the alphametics puzzle', function () {
     expect(solve(puzzle)).toBeNull();
   });
 
-  xit('puzzle with four letters', function () {
+  it('puzzle with four letters', function () {
     var puzzle = 'AS + A == MOM';
     var expected =  {
       'A': 9,
@@ -32,7 +32,7 @@ describe('Solve the alphametics puzzle', function () {
     expect(solve(puzzle)).toEqual(expected);
   });
 
-  xit('puzzle with six letters', function () {
+  it('puzzle with six letters', function () {
     var puzzle = 'NO + NO + TOO == LATE';
     var expected =  {
       'N': 7,

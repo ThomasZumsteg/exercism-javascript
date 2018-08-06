@@ -44,12 +44,16 @@ function solve(puzzle) {
     const terms = puzzle.split(' == ')[0].split(' + ');
     const letters = get_letters(sum, ...terms);
     const digits = new Array(10).fill(0).map((_, i) => i);
+    const first = Array.from(
+        new Set([sum.split('')[0], ...terms.map(word => word.split('')[0])]));
     var solution = [];
-    var map;
+    var map, equal, first_zero;
     for(let combination of combinations(letters.length, digits)) {
         map = make_map(combination, letters);
-        if(terms.reduce((acc, word) => translate(word, map) + acc, 0) 
-            == translate(sum, map)) {
+        equal = terms.reduce(
+            (acc, word) => translate(word, map) + acc, 0) == translate(sum, map);
+        first_zero = first.reduce((acc, l) => !acc && (map[l] != 0), false);
+        if(equal && !first_zero) {
             solution.push(map);
         }
     }
