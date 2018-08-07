@@ -52,7 +52,7 @@ function solve(puzzle) {
         map = make_map(combination, letters);
         equal = terms.reduce(
             (acc, word) => translate(word, map) + acc, 0) == translate(sum, map);
-        first_zero = first.reduce((acc, l) => !acc && (map[l] != 0), false);
+        first_zero = first.reduce((acc, l) => acc || (map[l] == 0), false);
         if(equal && !first_zero) {
             solution.push(map);
         }

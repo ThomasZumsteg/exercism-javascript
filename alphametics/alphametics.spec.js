@@ -45,7 +45,7 @@ describe('Solve the alphametics puzzle', function () {
     expect(solve(puzzle)).toEqual(expected);
   });
 
-  xit('puzzle with seven letters', function () {
+  it('puzzle with seven letters', function () {
     var puzzle = 'HE + SEES + THE == LIGHT';
     var expected =  {
       'E': 4,
@@ -59,7 +59,7 @@ describe('Solve the alphametics puzzle', function () {
     expect(solve(puzzle)).toEqual(expected);
   });
 
-  xit('puzzle with eight letters', function () {
+  it('puzzle with eight letters', function () {
     var puzzle = 'SEND + MORE == MONEY';
     var expected =  {
       'S': 9,
@@ -74,7 +74,7 @@ describe('Solve the alphametics puzzle', function () {
     expect(solve(puzzle)).toEqual(expected);
   });
 
-  xit('puzzle with ten letters', function () {
+  it('puzzle with ten letters', function () {
     var puzzle = 'AND + A + STRONG + OFFENSE + AS + A + GOOD == DEFENSE';
     var expected =   {
       'A': 5,
