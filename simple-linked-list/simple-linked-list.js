@@ -1,6 +1,7 @@
 class List {
     constructor(head) {
         this.head = head;
+        this.tail;
     }
 
     push(element) {
@@ -57,13 +58,11 @@ class List {
     }
 
     reverse() {
-        var vals = [];
+        var revll = new List();
         while(this.head) {
-            vals.push(this.shift());
+            revll.unshift(this.shift());
         }
-        for(let val of vals) {
-            this.shift(val);
-        }
+        this.head = revll.head;
     }
 }
 
