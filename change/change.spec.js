@@ -9,26 +9,26 @@ describe('Change', function () {
     expect(result).toEqual([1]);
   });
 
-  xit('return a single coin', function () {
+  it('return a single coin', function () {
     var change = new Change();
     var result = change.calculate([1, 5, 10, 25, 100], 25);
     expect(result).toEqual([25]);
   });
 
-  xit('multiple coins coin', function () {
+  it('multiple coins coin', function () {
     var change = new Change();
     var result = change.calculate([1, 5, 10, 25, 100], 15);
     expect(result).toEqual([5, 10]);
   });
 
-  xit('test with Lillipution Currency where a greedy algorithm fails', function () {
+  it('test with Lillipution Currency where a greedy algorithm fails', function () {
     // https://en.wikipedia.org/wiki/Change-making_problem#Greedy_method
     var change = new Change();
     var result = change.calculate([1, 4, 15, 20, 50], 23);
     expect(result).toEqual([4, 4, 15]);
   });
 
-  xit('test with lower Elbonian Currency where a greedy algorithm fails', function () {
+  it('test with lower Elbonian Currency where a greedy algorithm fails', function () {
     // https://en.wikipedia.org/wiki/Change-making_problem#Greedy_method
     var change = new Change();
     var result = change.calculate([1, 5, 10, 21, 25], 63);
