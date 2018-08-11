@@ -35,33 +35,33 @@ describe('Change', function () {
     expect(result).toEqual([21, 21, 21]);
   });
 
-  xit('test large amount of change', function () {
+  it('test large amount of change', function () {
     var change = new Change();
     var result = change.calculate([1, 2, 5, 10, 20, 50, 100], 999);
     expect(result).toEqual([2, 2, 5, 20, 20, 50, 100, 100, 100, 100, 100, 100, 100, 100, 100]);
   });
 
-  xit('test zero change', function () {
+  it('test zero change', function () {
     var change = new Change();
     var result = change.calculate([1, 5, 10, 21, 25], 0);
     expect(result).toEqual([]);
   });
 
-  xit('test less than the smallest currency represented', function () {
+  it('test less than the smallest currency represented', function () {
     var change = new Change();
     var message = 'The total 3 cannot be represented in the given currency.';
     var test = function () {return change.calculate([5, 10], 3);};
     expect(test).toThrowError(Error, message);
   });
 
-  xit('test a large value that the currency cannot represent', function () {
+  it('test a large value that the currency cannot represent', function () {
     var change = new Change();
     var message = 'The total 94 cannot be represented in the given currency.';
     var test = function () {return change.calculate([5, 10], 94);};
     expect(test).toThrowError(Error, message);
   });
 
-  xit('negative change is rejected', function () {
+  it('negative change is rejected', function () {
     var change = new Change();
     var message = 'Negative totals are not allowed.';
     var test = function () {return change.calculate([1, 2, 5], -5);};
