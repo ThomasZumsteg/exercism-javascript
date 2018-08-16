@@ -5,7 +5,7 @@ describe('Transpose', function () {
     expect(transpose([])).toEqual([]);
   });
 
-  xit('test two characters in a row', function () {
+  it('test two characters in a row', function () {
     var input = ['A1'];
     var expected = ['A', '1'];
     expect(transpose(input)).toEqual(expected);
