@@ -1,7 +1,13 @@
-module.exports = function(array) {
-    array = array.map(row => row.split(''));
+module.exports = function(start) {
+    start = start.map(row => row.split(''));
+    max_col = start.reduce((max, row) => Math.max(max, row.length), 0);
     result = [];
-    for(var col = 0; col < array.map(row => row.length); col++) {
+    for(var r = 0; r < start.length; r++) {
+        for(var c = 0; c < max_col; c++) {
+            if(result[c] == undefined)
+                result[c] = []
+            result[c][r] = start[r][c] != undefined ? start[r][c] : ' ';
+        }
     }
     return result.map(row => row.join(''));
 }
