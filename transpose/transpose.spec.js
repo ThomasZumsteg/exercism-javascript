@@ -29,7 +29,7 @@ describe('Transpose', function () {
     expect(transpose(input)).toEqual(expected);
   });
 
-  xit('test first line longer than second line', function () {
+  it('test first line longer than second line', function () {
     var input = ['The fourth line.', 'The fifth line.'];
     var expected = ['TT', 'hh', 'ee', '  ', 'ff', 'oi', 'uf', 'rt', 'th', 'h ', ' l', 'li', 'in', 'ne', 'e.', '.'];
     expect(transpose(input)).toEqual(expected);
