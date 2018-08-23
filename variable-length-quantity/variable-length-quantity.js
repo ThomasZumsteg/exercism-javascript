@@ -1,13 +1,18 @@
 module.exports = {
   encode(number) {
     const result = [];
-    let remaining = number;
-    while ((remaining | 0x0) > 0) {
-      result.unshift((remaining & 0x7f) | 0x80);
-      remaining >>= 7;
+    for (let remaining of number) {
+      let set = [];
+      while (remaining > 0) {
+        set.unshift((remaining & 0x7f) | 0x80);
+        remaining >>>= 7;
+      }
+      if(set.length === 0)
+        set.push(0);
+      else
+        set[set.length - 1] &= 0x7f;
+      result.push(...set);
     }
-    if (result.length === 0) { return [0]; }
-    result[result.length - 1] &= 0x7f;
     return result;
   },
 };

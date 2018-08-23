@@ -54,23 +54,23 @@ describe('VariableLengthQuantity', () => {
       expect(VLQ.encode([0x10000000])).toEqual([0x81, 0x80, 0x80, 0x80, 0]);
     });
 
-    xtest('arbitrary quintuple byte', () => {
+    test('arbitrary quintuple byte', () => {
       expect(VLQ.encode([0xff000000])).toEqual([0x8f, 0xf8, 0x80, 0x80, 0]);
     });
 
-    xtest('maximum 32-bit integer input', () => {
+    test('maximum 32-bit integer input', () => {
       expect(VLQ.encode([0xffffffff])).toEqual([0x8f, 0xff, 0xff, 0xff, 0x7f]);
     });
 
-    xtest('two single-byte values', () => {
+    test('two single-byte values', () => {
       expect(VLQ.encode([0x40, 0x7f])).toEqual([0x40, 0x7f]);
     });
 
-    xtest('two multi-byte values', () => {
+    test('two multi-byte values', () => {
       expect(VLQ.encode([0x4000, 0x123456])).toEqual([0x81, 0x80, 0, 0xc8, 0xe8, 0x56]);
     });
 
-    xtest('many multi-byte values', () => {
+    test('many multi-byte values', () => {
       const input = [0x2000, 0x123456, 0xfffffff, 0, 0x3fff, 0x4000];
       const expected = [0xc0, 0, 0xc8, 0xe8, 0x56, 0xff, 0xff, 0xff, 0x7f, 0, 0xff, 0x7f, 0x81, 0x80, 0];
       expect(VLQ.encode(input)).toEqual(expected);
