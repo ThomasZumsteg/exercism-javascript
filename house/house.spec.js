@@ -193,7 +193,7 @@ describe('House', () => {
     expect(House.verses(startVerse, endVerse)).toEqual(lyrics);
   });
 
-  xtest('full rhyme', () => {
+  test('full rhyme', () => {
     const startVerse = 1;
     const endVerse = 12;
     const lyrics = [
