@@ -78,36 +78,37 @@ describe('VariableLengthQuantity', () => {
   });
 
   describe('Decode a series of bytes, producing a series of integers.', () => {
-    xtest('one byte', () => {
+    test('one byte', () => {
       expect(VLQ.decode([0x7f])).toEqual([0x7f]);
     });
 
-    xtest('two bytes', () => {
+    test('two bytes', () => {
       expect(VLQ.decode([0xc0, 0])).toEqual([0x2000]);
     });
 
-    xtest('three bytes', () => {
+    test('three bytes', () => {
       expect(VLQ.decode([0xff, 0xff, 0x7f])).toEqual([0x1fffff]);
     });
 
-    xtest('four bytes', () => {
+    test('four bytes', () => {
       expect(VLQ.decode([0x81, 0x80, 0x80, 0])).toEqual([0x200000]);
     });
 
-    xtest('maximum 32-bit integer', () => {
+    test('maximum 32-bit integer', () => {
       expect(VLQ.decode([0x8f, 0xff, 0xff, 0xff, 0x7f])).toEqual([0xffffffff]);
     });
 
-    xtest('incomplete sequence causes error', () => {
+    test('incomplete sequence causes error', () => {
       expect(() => { VLQ.decode([0xff]); }).toThrow(new Error('Incomplete sequence'));
     });
 
-    xtest('incomplete sequence causes error, even if value is zero', () => {
+    test('incomplete sequence causes error, even if value is zero', () => {
       expect(() => { VLQ.decode([0x80]); }).toThrow(new Error('Incomplete sequence'));
     });
 
-    xtest('multiple values', () => {
-      const input = [0xc0, 0, 0xc8, 0xe8, 0x56, 0xff, 0xff, 0xff, 0x7f, 0, 0xff, 0x7f, 0x81, 0x80, 0];
+    test('multiple values', () => {
+      const input = [0xc0, 0, 0xc8, 0xe8, 0x56, 0xff, 0xff, 0xff, 0x7f, 0,
+        0xff, 0x7f, 0x81, 0x80, 0];
       const expected = [0x2000, 0x123456, 0xfffffff, 0, 0x3fff, 0x4000];
       expect(VLQ.decode(input)).toEqual(expected);
     });
