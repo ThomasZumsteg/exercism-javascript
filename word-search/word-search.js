@@ -10,7 +10,7 @@ export default class WordSearch {
         for (let word of words) {
           let end = this.search(word, r, c)
           if (end != undefined) {
-            result[word] = {"start": [r, c], "end": end};
+            result[word] = {"start": [r+1, c+1], "end": end};
           }
         }
       }
@@ -30,10 +30,17 @@ export default class WordSearch {
       {"row": -1, "col": -1},
     ]
     for (let diff of diffs) {
+      let flag = true;
       for (let pos = 0; pos < word.length; pos++) {
         if (this.grid[diff.row * pos + row] == undefined ||
-            word[pos] != this.grid[diff.row * pos + row][diff.col * pos + col])
+            word[pos] != this.grid[diff.row * pos + row][diff.col * pos + col]) {
+          flag = false
           break
+        }
+      }
+      if (flag) {
+        return [diff.row * word.length + row + 1,
+                diff.col * word.length + col];
       }
     }
   }
