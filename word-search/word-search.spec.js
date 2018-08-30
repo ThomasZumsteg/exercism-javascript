@@ -291,7 +291,7 @@ describe('different directions', () => {
 
   });
 
-  xtest('should locate multiple words written in different horizontal directions', ()=> {
+  test('should locate multiple words written in different horizontal directions', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -324,7 +324,7 @@ describe('different directions', () => {
 });
 
 describe('vertical directions', ()=> {
-  xtest('should locate words written top to bottom', ()=> {
+  test('should locate words written top to bottom', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -359,7 +359,7 @@ describe('vertical directions', ()=> {
 
   });
 
-  xtest('should locate words written bottom to top', ()=> {
+  test('should locate words written bottom to top', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -397,7 +397,7 @@ describe('vertical directions', ()=> {
     expect(wordSearch.find(["elixir", "clojure", "ecmascript", "rust"])).toEqual(expectedResults);
 
   });
-  xtest('should locate words written top left to bottom right', ()=> {
+  test('should locate words written top left to bottom right', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -446,7 +446,7 @@ describe('vertical directions', ()=> {
 
   });
 
-  xtest('should locate words written bottom right to top left', ()=> {
+  test('should locate words written bottom right to top left', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -500,7 +500,7 @@ describe('vertical directions', ()=> {
 
   });
 
-  xtest('should locate words written bottom left to top right', ()=> {
+  test('should locate words written bottom left to top right', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -559,7 +559,7 @@ describe('vertical directions', ()=> {
 
   });
 
-  xtest('should locate words written top right to bottom left', ()=> {
+  test('should locate words written top right to bottom left', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",

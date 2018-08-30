@@ -39,8 +39,8 @@ export default class WordSearch {
         }
       }
       if (flag) {
-        return [diff.row * word.length + row + 1,
-                diff.col * word.length + col];
+        return [diff.row * (word.length - 1) + row + 1,
+                diff.col * (word.length - 1) + col + 1];
       }
     }
   }
