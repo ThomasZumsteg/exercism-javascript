@@ -1,34 +1,38 @@
-class Left {
-}
-
-class Right {
-}
-
 class Zipper {
-  constructor(tree) {
-    self.value = tree.value;
-    self.left = tree.left;
-    self.right = tree.right;
+  constructor(tree, crumbs) {
+    this.tree = tree;
+    this.crumbs = crumbs || [];
   }
-  toTree(items) {
-    return {
-      value: self.value,
-      left: self.left,
-      right: self.right
-    }
+  toTree() {
+    var val = this;
+    while (val.up() != null)
+      val = val.up()
+    return val.tree;
   }
   left() {
-    if(self.left == null)
+    if (!this.tree['left'])
       return null;
-    return new Zipper(self.left);
+    return new Zipper(this.tree['left'],
+        [{ right: this.tree['right'], value: this.tree['value'] }, ...this.crumbs]);
   }
   right() {
-    if(self.right == null)
+    if (!this.tree['right'])
       return null;
-    return new Zipper(self.right);
+    return new Zipper(this.tree['right'],
+        [{ left: this.tree['left'], value: this.tree['value'] }, ...this.crumbs]);
   }
   value() {
-    return self.value;
+    return this.tree['value'];
+  }
+  up() {
+    let head = this.crumbs[0];
+    if (head == undefined)
+      return null;
+    if ('left' in head)
+      head.right = this.tree;
+    else if ('right' in head)
+      head.left = this.tree;
+    return new Zipper(head, this.crumbs.slice(1));
   }
 }
 

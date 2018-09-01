@@ -28,7 +28,7 @@ describe('Zipper', () => {
   });
 
   test('data is retained', () => {
-    expect(zipper.toTree(t1)).toEqual(t1);
+    expect(zipper.toTree()).toEqual(t1);
   });
 
   test('left, right and value', () => {
@@ -43,11 +43,11 @@ describe('Zipper', () => {
     expect(zipper.left().right().toTree()).toEqual(t1);
   });
 
-  xtest('traversing up from top', () => {
+  test('traversing up from top', () => {
     expect(zipper.up()).toEqual(null);
   });
 
-  xtest('left, right and up', () => {
+  test('left, right and up', () => {
     expect(zipper.left().up().right().up().left().right().value()).toEqual(3);
   });
 
