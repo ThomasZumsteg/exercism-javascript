@@ -51,11 +51,11 @@ describe('Zipper', () => {
     expect(zipper.left().up().right().up().left().right().value()).toEqual(3);
   });
 
-  xtest('setValue', () => {
+  test('setValue', () => {
     expect(zipper.left().setValue(5).toTree()).toEqual(t2);
   });
 
-  xtest('setValue after traversing up', () => {
+  test('setValue after traversing up', () => {
     expect(zipper.left().right().up().setValue(5).toTree()).toEqual(t2);
   });
 
