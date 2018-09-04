@@ -35,7 +35,15 @@ class Zipper {
     return new Zipper(head, this.crumbs.slice(1));
   }
   setValue(val) {
-    this.tree['value'] = val;
+    this.tree.value = val;
+    return this;
+  }
+  setLeft(leaf) {
+    this.tree.left = leaf;
+    return this;
+  }
+  setRight(leaf) {
+    this.tree.right = leaf;
     return this;
   }
 }
