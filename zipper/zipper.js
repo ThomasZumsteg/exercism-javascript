@@ -28,9 +28,9 @@ class Zipper {
     let head = this.crumbs[0];
     if (head == undefined)
       return null;
-    if (!('left' in head))
+    if ('right' in head)
       head.left = this.tree;
-    else if (!('right' in head))
+    else if ('left' in head)
       head.right = this.tree;
     return new Zipper(head, this.crumbs.slice(1));
   }
