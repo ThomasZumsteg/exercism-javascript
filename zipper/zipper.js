@@ -2,11 +2,13 @@ class Zipper {
   constructor(tree, crumbs) {
     this.tree = tree;
     this.crumbs = crumbs || [];
+    console.log(JSON.stringify(this));
   }
   toTree() {
-    var val = this;
-    while (val.up() != null)
-      val = val.up()
+    var val = this
+    while (val.up() != null) {
+      val = val.up();
+    }
     return val.tree;
   }
   left() {
