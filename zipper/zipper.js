@@ -30,7 +30,7 @@ class Zipper {
   up() {
     if (this.crumbs.length <= 0)
       return null;
-    let head = JSON.parse(JSON.stringify(this.crumbs[0]));
+    let head = this.crumbs[0];
     if (!('right' in head)) {
       head.right = this.tree;
     } 
@@ -40,18 +40,25 @@ class Zipper {
     return new Zipper(head, this.crumbs.slice(1));
   }
   setValue(val) {
-    this.tree.value = val;
-    return this;
+    return new Zipper({
+        value: val,
+        left: this.tree.left,
+        right: this.tree.right
+    }, this.crumbs);
   }
   setLeft(leaf) {
-    console.log('befor: ' + JSON.stringify(this));
-    this.tree.left = leaf;
-    console.log('after: ' + JSON.stringify(this));
-    return this;
+    return new Zipper({
+        value: this.tree.value,
+        left: leaf,
+        right: this.tree.right
+    }, this.crumbs);
   }
   setRight(leaf) {
-    this.tree.right = leaf;
-    return this;
+    return new Zipper({
+        value: this.tree.value,
+        left: this.tree.left,
+        right: leaf
+    }, this.crumbs);
   }
 }
 
