@@ -181,43 +181,43 @@ describe('Forth', () => {
   });
 
   describe('user-defined words', () => {
-    xtest('can consist of built-in words', () => {
+    test('can consist of built-in words', () => {
       forth.evaluate(': dup-twice dup dup ;');
       forth.evaluate('1 dup-twice');
       expect(forth.stack).toEqual([1, 1, 1]);
     });
-    xtest('execute in the right order', () => {
+    test('execute in the right order', () => {
       forth.evaluate(': countup 1 2 3 ;');
       forth.evaluate('countup');
       expect(forth.stack).toEqual([1, 2, 3]);
     });
-    xtest('can override other user-defined words', () => {
+    test('can override other user-defined words', () => {
       forth.evaluate(': foo dup ;');
       forth.evaluate(': foo dup dup ;');
       forth.evaluate( '1 foo');
       expect(forth.stack).toEqual([1, 1, 1]);
     });
-    xtest('can override built-in words', () => {
+    test('can override built-in words', () => {
       forth.evaluate(': swap dup ;');
       forth.evaluate('1 swap');
       expect(forth.stack).toEqual([1, 1]);
     });
-    xtest('can override built-in operators', () => {
+    test('can override built-in operators', () => {
       forth.evaluate(': + * ;');
       forth.evaluate('3 4 +');
       expect(forth.stack).toEqual([12]);
     });
-    xtest('cannot redefine numbers', () => {
+    test('cannot redefine numbers', () => {
       expect(() => {
         forth.evaluate(': 1 2 ;');
       }).toThrow(new Error('Invalid definition'));
     });
-    xtest('errors if executing a non-existent word', () => {
+    test('errors if executing a non-existent word', () => {
       expect(() => {
         forth.evaluate('foo');
       }).toThrow(new Error('Unknown command'));
     });
-    xtest('only defines words for current instance', () => {
+    test('only defines words for current instance', () => {
       const first = new Forth();
       const second = new Forth();
       first.evaluate(': + - ;');
@@ -229,28 +229,28 @@ describe('Forth', () => {
   });
 
   describe('case-insensitivity', () => {
-    xtest('DUP is case-insensitive', () => {
+    test('DUP is case-insensitive', () => {
       forth.evaluate('1 DUP Dup dup');
       expect(forth.stack).toEqual([1, 1, 1, 1]);
     });
-    xtest('DROP is case-insensitive', () => {
+    test('DROP is case-insensitive', () => {
       forth.evaluate('1 2 3 4 DROP Drop drop');
       expect(forth.stack).toEqual([1]);
     });
-    xtest('SWAP is case-insensitive', () => {
+    test('SWAP is case-insensitive', () => {
       forth.evaluate('1 2 SWAP 3 Swap 4 swap');
       expect(forth.stack).toEqual([2, 3, 4, 1]);
     });
-    xtest('OVER is case-insensitive', () => {
+    test('OVER is case-insensitive', () => {
       forth.evaluate('1 2 OVER Over over');
       expect(forth.stack).toEqual([1, 2, 1, 2, 1]);
     });
-    xtest('user-defined words are case-insensitive', () => {
+    test('user-defined words are case-insensitive', () => {
       forth.evaluate(': foo dup ;');
       forth.evaluate('1 FOO Foo foo');
       expect(forth.stack).toEqual([1, 1, 1, 1]);
     });
-    xtest('definitions are case-insensitive', () => {
+    test('definitions are case-insensitive', () => {
       forth.evaluate(': SWAP DUP Dup dup ;');
       forth.evaluate('1 swap');
       expect(forth.stack).toEqual([1, 1, 1, 1]);
