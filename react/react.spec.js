@@ -45,7 +45,7 @@ describe('React module', () => {
   });
 
 
-  xtest('compute cells can depend on other compute cells', () => {
+  test('compute cells can depend on other compute cells', () => {
     const inputCell = new InputCell(1);
     const timesTwo = new ComputeCell(
       [inputCell],
