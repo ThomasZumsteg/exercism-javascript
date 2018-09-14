@@ -1,33 +1,39 @@
 export class InputCell {
   constructor(value) {
     this.value = value;
+    this.updateCells = [];
+    this.callbacks = [];
   }
   setValue(value) {
-    this.value = value;
+    if (this.value != value) {
+      this.value = value;
+      for (let cell of this.updateCells) {
+        cell.setValue(cell.func(cell.cells));
+      }
+      for (let callback of this.callbacks) {
+        console.log(callback);
+        callback.values.push(this.value);
+      }
+    }
+  }
+  addCallback(callback) {
+    this.callbacks.push(callback);
   }
 }
 
-export class ComputeCell {
- constructor(cells, func) {
-   this._func = func;
-   this._cells = cells;
-   this._callbacks = [];
-   this._val = this._func(this._cells);
- }
- get value() {
-   let newval = this._func(this._cells);
-   if (newval != this._val) {
-     this._val = newval;
-     for (let call of this._callbacks) {
-       call(newval);
-     }
-   }
-   return newval;
- }
- addCallback(func) {
-   this._callbacks.push(func);
- }
+export class ComputeCell extends InputCell {
+  constructor(cells, func) {
+    super(func(cells));
+    this.func = func;
+    this.cells = cells;
+    for (let cell of cells) {
+      cell.updateCells.push(this);
+    }
+  }
 }
 
 export class CallbackCell {
+  constructor(func) {
+    this.values = [];
+  }
 }
