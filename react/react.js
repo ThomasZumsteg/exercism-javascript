@@ -11,13 +11,15 @@ export class InputCell {
         cell.setValue(cell.func(cell.cells));
       }
       for (let callback of this.callbacks) {
-        console.log(callback);
         callback.values.push(this.value);
       }
     }
   }
   addCallback(callback) {
     this.callbacks.push(callback);
+  }
+  removeCallback(callback) {
+    this.callbacks = this.callbacks.filter(cell => cell != callback);
   }
 }
 
