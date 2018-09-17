@@ -19,13 +19,12 @@ export class InputCell {
         cell.setValue(cell.func(cell.cells));
       }
       for (let key of Object.keys(this.callbacks)) {
-        let callback = this.callbacks[key];
-        callbackQueue[key] = (() => callback.values.push(value));
+        callbackQueue[key] = () => this.callbacks[key].values.push(value);
       }
 
       if (this.locked) {
-        for (let key in Object.keys(callbackQueue)) {
-          (callbackQueue[key])();
+        for (let key of Object.keys(callbackQueue)) {
+          callbackQueue[key]();
         }
         callbackQueue = {};
         this.locked = false;

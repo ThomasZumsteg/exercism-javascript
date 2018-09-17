@@ -82,7 +82,7 @@ describe('React module', () => {
     expect(callback.values).toEqual([4]);
   });
 
-  xtest('callbacks fire only when output values change', () => {
+  test('callbacks fire only when output values change', () => {
     const inputCell = new InputCell(1);
     const output = new ComputeCell(
       [inputCell],
@@ -100,7 +100,7 @@ describe('React module', () => {
   });
 
 
-  xtest('callbacks can be added and removed', () => {
+  test('callbacks can be added and removed', () => {
     const inputCell = new InputCell(1);
     const output = new ComputeCell(
       [inputCell],
@@ -127,7 +127,7 @@ describe('React module', () => {
     expect(callback3.values).toEqual([42]);
   });
 
-  xtest('removing a callback multiple times doesn\'t interfere with other callbacks', () => {
+  test('removing a callback multiple times doesn\'t interfere with other callbacks', () => {
     const inputCell = new InputCell(1);
     const output = new ComputeCell(
       [inputCell],
@@ -150,7 +150,7 @@ describe('React module', () => {
     expect(callback2.values).toEqual([3]);
   });
 
-  xtest('callbacks should only be called once, even if multiple dependencies change', () => {
+  test('callbacks should only be called once, even if multiple dependencies change', () => {
     const inputCell = new InputCell(1);
     const plusOne = new ComputeCell(
       [inputCell],
@@ -180,7 +180,7 @@ describe('React module', () => {
     expect(callback1.values).toEqual([10]);
   });
 
-  xtest('callbacks should not be called if dependencies change but output value doesn\'t change', () => {
+  test('callbacks should not be called if dependencies change but output value doesn\'t change', () => {
     const inputCell = new InputCell(1);
     const plusOne = new ComputeCell(
       [inputCell],
