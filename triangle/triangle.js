@@ -20,7 +20,7 @@ Triangle.prototype.kind = function() {
 	// Classification
 	if (a === b && b === c)
 		return "equilateral";
-	if(a === b || b === c)
+	if (a === b || b === c)
 		return "isosceles";
 	return "scalene";
 };
